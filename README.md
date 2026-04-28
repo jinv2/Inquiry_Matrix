@@ -1,0 +1,16 @@
+# Inquiry Matrix
+
+> 提问决定成败，而非答案。—— Shensist Art Intelligence Studio
+
+Inquiry Matrix 是一款采用 C端免费开源理念 的思维辅助工具。通过极简的设计与先进的交互理念，辅助用户将零散的点子进行第一性原理级的剖析与落地。
+
+## 工程结构
+- `/src` : 包含核心逻辑脚本 `app.js` (ESM)。
+- `/public` : 包含公共静态资产，例如 Logo 等。
+- `index.html` : 极简无依赖的前端 Web 页面。
+
+## 严格版权保护声明 (AGPL-3.0)
+本项目采用 **AGPL-3.0** 开源许可证。
+**注意：** 您可以自由地在C端免费使用本软件。但任何对本软件的修改、衍生或在服务端提供基于本代码的网络服务，**必须同样以 AGPL-3.0 协议开源整个相关工程**。我们对“闭源白嫖”持零容忍态度，此协议是对本项目的最严格版权保护。任何未授权的私有化部署和闭源商业化行为均属侵权。
+
+Copyright © 2026 Shensist Art Intelligence Studio. All Rights Reserved.

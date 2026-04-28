@@ -1,0 +1,105 @@
+<!--
+ * Copyright © 2026 Shensist Art Intelligence Studio. All Rights Reserved.
+ *
+ * This project is strictly licensed under the AGPL-3.0 License.
+ * Any network service derived from or incorporating this code MUST BE OPEN SOURCED.
+ * 严禁任何形式的闭源商用白嫖行为。
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问源 | Inquiry Matrix - Shensist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;500;700&display=swap');
+        body { background: #050505; color: #f0f0f0; font-family: 'Noto Sans SC', sans-serif; }
+        .glass-card { background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; transition: all 0.3s ease; }
+        .glass-card:hover { border-color: rgba(59, 130, 246, 0.5); transform: translateY(-2px); }
+        .btn-gradient { background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); transition: opacity 0.2s; }
+        .btn-gradient:active { opacity: 0.8; transform: scale(0.98); }
+        .footer-line { border-top: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="flex-grow p-4 md:p-12">
+        <div class="max-w-5xl mx-auto">
+            <header class="text-center mb-16">
+                <div class="flex justify-center mb-6">
+                    <a href="https://shensist.top/" title="点击返回官网">
+                        <img src="public/logo_ts.webp" alt="Shensist Logo" class="h-16 w-auto opacity-90 hover:opacity-100 transition">
+                    </a>
+                </div>
+                <h1 class="text-5xl font-black tracking-tighter mb-4 italic bg-gradient-to-br from-blue-400 to-purple-500 bg-clip-text text-transparent uppercase">INQUIRY MATRIX</h1>
+                <p class="text-gray-500 text-lg uppercase tracking-widest italic">“提问决定成败，而非答案”</p>
+            </header>
+
+            <div class="glass-card p-8 mb-12 shadow-2xl">
+                <textarea id="userInput" class="w-full bg-transparent border-none text-2xl outline-none resize-none placeholder-gray-700" rows="3" placeholder="输入你的一点点念头..."></textarea>
+                <div class="flex justify-between items-center mt-6 border-t border-white/5 pt-6">
+                    <span class="text-[10px] text-gray-600 font-mono italic tracking-tighter uppercase">Power by Shensist Art Intelligence Studio</span>
+                    <button onclick="startLogic()" id="mainBtn" class="btn-gradient px-10 py-4 rounded-full font-bold text-white shadow-lg shadow-blue-500/20">启动思维拆解</button>
+                </div>
+            </div>
+
+            <div id="resultGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 opacity-0 transition-opacity duration-700"></div>
+        </div>
+    </div>
+
+    <footer class="p-8 footer-line text-center">
+        <div class="max-w-5xl mx-auto">
+            <p class="text-gray-600 text-sm mb-2 italic">开源技术支持 · 赋能数字单兵</p>
+            <p class="text-gray-500 text-[10px] font-light tracking-widest uppercase">
+                Copyright © 2026 <a href="https://shensist.top/" class="hover:text-blue-400 underline decoration-dotted transition">Shensist Art Intelligence Studio</a>. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function startLogic() {
+            const input = document.getElementById('userInput').value;
+            const btn = document.getElementById('mainBtn');
+            const grid = document.getElementById('resultGrid');
+            if (!input.trim()) return;
+            btn.innerText = '正在逻辑建模...';
+            btn.disabled = true;
+            setTimeout(() => {
+                const matrix = [
+                    { t: "本质剖析", q: "这件事的第一性原理是什么？", p: "请深度剖析以下想法的核心逻辑、用户痛点及市场稀缺性：\n\n「" + input + "」\n\n并列出3个最难解决的底层挑战。" },
+                    { t: "技术攻坚", q: "如何用最小成本实现MVP？", p: "我想用最轻量化的方式实现：「" + input + "」。请推荐一套适合独立开发者的技术栈，并给出第一版的最小功能清单。" },
+                    { t: "灵魂注入", q: "它的独特性与审美坐标？", p: "请为这个项目赋予审美灵魂：「" + input + "」。从视觉风格、交互隐喻、品牌slogan三个维度进行创意发散。" },
+                    { t: "落地推演", q: "未来24小时的动作指南？", p: "针对这个念头：「" + input + "」，请拆解成5个具体的、可立即执行的步骤。每个步骤必须是半小时内能完成的动作。" }
+                ];
+                grid.innerHTML = '';
+                matrix.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'glass-card p-6 flex flex-col justify-between';
+                    card.innerHTML = `
+                        <div>
+                            <span class="text-[10px] tracking-widest text-blue-500 font-bold uppercase mb-2 block">${item.t}</span>
+                            <h3 class="text-xl font-medium mb-4">${item.q}</h3>
+                        </div>
+                        <button onclick="copyText(this, \`${item.p}\`)" class="w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 text-[10px] text-gray-500 transition-all uppercase tracking-tighter font-bold">复制黄金提问 Prompt</button>
+                    `;
+                    grid.appendChild(card);
+                });
+                grid.classList.remove('opacity-0');
+                btn.innerText = '完成拆解';
+                btn.disabled = false;
+                setTimeout(() => { btn.innerText = '启动思维拆解'; }, 2000);
+            }, 800);
+        }
+        function copyText(btn, text) {
+            navigator.clipboard.writeText(text);
+            const originalText = btn.innerText;
+            btn.innerText = 'COPIED TO CLIPBOARD';
+            btn.style.color = '#4ade80';
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.color = '';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
