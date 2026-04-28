@@ -1,5 +1,6 @@
 /**
- * Copyright © 2026 Shensist Art Intelligence Studio. All Rights Reserved.
+ * 神 思 庭 · AI 山 海 造 物 主
+ * 微信联络：Shensi-ST · © 2026 SHENSIST.TOP
  * 
  * This project is strictly licensed under the AGPL-3.0 License.
  * Any network service derived from or incorporating this snippet MUST BE OPEN SOURCED.
